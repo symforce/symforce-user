@@ -22,7 +22,7 @@ class ChangePasswordController extends \FOS\UserBundle\Controller\ChangePassword
     
     /**
      * @Route("/change-password", name="fos_user_change_password")
-     * Template("AppWebBundle:Profile:changePassword.html.twig")
+     * Template("SymfonyUserBundle:Profile:changePassword.html.twig")
      */
     public function changePasswordAction(Request $request)
     {

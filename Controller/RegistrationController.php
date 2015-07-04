@@ -82,7 +82,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
             
         }
 
-        return $this->container->get('templating')->renderResponse('AppUserBundle:Registration:register.html.twig', array(
+        return $this->container->get('templating')->renderResponse('SymforceUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
             'admin' => $admin ,
         ));
@@ -95,7 +95,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
         $admin = $this->container->get('sf.admin.loader')->getAdminByName( 'sf_user') ;
         $email = $this->container->get('session')->get('fos_user_send_confirmation_email/email') ;
         if( !$email ) {
-            return $this->container->get('templating')->renderResponse('AppUserBundle:Registration:checkEmail.html.twig' , array(
+            return $this->container->get('templating')->renderResponse('SymforceUserBundle:Registration:checkEmail.html.twig' , array(
                 'user' => null ,
                 'admin' => $admin ,
             ));
@@ -106,7 +106,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
             throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
         }
 
-        return $this->container->get('templating')->renderResponse('AppUserBundle:Registration:checkEmail.html.twig' , array(
+        return $this->container->get('templating')->renderResponse('SymforceUserBundle:Registration:checkEmail.html.twig' , array(
             'user' => $user ,
              'admin' => $admin ,
         ));
@@ -149,7 +149,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
 
     /**
      * @Route("/confirmed", name="fos_user_registration_confirmed", methods="GET")
-     * @Template("AppUserBundle:Registration:confirmed.html.twig")
+     * @Template("SymforceUserBundle:Registration:confirmed.html.twig")
      */
     public function confirmedAction() {
         return parent::confirmedAction();

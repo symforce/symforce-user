@@ -1,4 +1,4 @@
-{% extends "AppWebBundle::page_layout.html.twig" %}
+{% extends "SymfonyUserBundle::page_layout.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -35,7 +35,7 @@
         </form>
         <script type="text/javascript">
             $(function() {
-                new FormValidator('#login_form', {
+                new SymforceFormValidator('#login_form', {
                     'url': '{{ path('fos_user_security_login') }}',
                     'elements': '.captcha_input input'
                 });

@@ -35,7 +35,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
     {
         
         $tr = $this->container->get('translator') ;
-        $domain = 'AppUserBundle' ;
+        $domain = 'SymforceUserBundle' ;
         $sf_domain  = $this->container->getParameter('sf.admin.domain') ;
       
         $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'form', null, array(
@@ -101,7 +101,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
 
                 $email  = $this->getObfuscatedEmail($user) ;
                 
-                return $this->container->get('templating')->renderResponse('AppUserBundle:Resetting:checkEmail.html.twig', array(
+                return $this->container->get('templating')->renderResponse('SymforceUserBundle:Resetting:checkEmail.html.twig', array(
                     'email' => $email,
                 )) ;
             }
@@ -115,7 +115,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
      * Tell the user to check his email provider
      * 
      * @Route("/check-email", name="fos_user_resetting_check_email", methods="GET")
-     * @Template("AppUserBundle:Resetting:checkEmail.html.twig")
+     * @Template("SymforceUserBundle:Resetting:checkEmail.html.twig")
      */
     public function checkEmailAction(Request $request)
     {
@@ -157,7 +157,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         }
         
         $tr = $this->container->get('translator') ;
-        $domain = 'AppUserBundle' ;
+        $domain = 'SymforceUserBundle' ;
         $sf_domain  = $this->container->getParameter('sf.admin.domain') ;
         
         $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'form', $user, array(

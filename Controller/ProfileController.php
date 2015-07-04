@@ -23,7 +23,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
     
     /**
      * @Route("/", name="fos_user_profile_show")
-     * Template("AppWebBundle:Profile:info.html.twig")
+     * Template("SymfonyUserBundle:Profile:info.html.twig")
      */
     public function showAction()
     {
@@ -39,7 +39,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
     
     /**
      * @Route("/edit", name="fos_user_profile_edit")
-     * Template("AppWebBundle:Profile:edit.html.twig")
+     * Template("SymfonyUserBundle:Profile:edit.html.twig")
      */
     public function editAction(\Symfony\Component\HttpFoundation\Request $request)
     {

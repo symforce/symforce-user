@@ -1,4 +1,4 @@
-{% extends "AppWebBundle::page_layout.html.twig" %}
+{% extends "SymfonyUserBundle::page_layout.html.twig" %}
 
 {% block sf_content_main %}
 {% trans_default_domain 'FOSUserBundle' %}
@@ -58,7 +58,7 @@
 <script type="text/javascript">
 
     $(function() {
-        new FormValidator('#register_form');
+        new SymforceFormValidator('#register_form');
         $('.registration_term_url').click(function() {
             var url = $(this).attr('uri');
             window.open(url, "sf_registration_term", "width=956,height=900,scrollbars=yes,resizable=no");

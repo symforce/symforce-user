@@ -5,7 +5,7 @@ namespace Symforce\UserBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class AppUserBundle extends Bundle
+class SymforceUserBundle extends Bundle
 {
     
      /**

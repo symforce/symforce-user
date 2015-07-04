@@ -15,7 +15,7 @@ use Symfony\Component\Yaml\Parser as YamlParser ;
 // use Symfony\Component\PropertyAccess\PropertyAccess ;
 
 
-class AppUserExtension extends Extension
+class SymforceUserExtension extends Extension
 {
     /**
      *
