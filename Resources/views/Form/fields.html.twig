@@ -6,8 +6,8 @@
     <fieldset>
         <legend>{{ admin.label }}</legend>
             
-        <div class="app_authorize_dl">
-            <label class="app_authorize_dt">
+        <div class="sf_authorize_dl">
+            <label class="sf_authorize_dt">
                 <input type="checkbox" name="{{ full_name }}[{{ admin_name }}]" value="1" {% if value[admin_name]['action'] is defined %} checked="checked" {% endif %} />
                 {{ 'form.authorize.actions' |trans }}
             </label>
@@ -20,9 +20,9 @@
         </div>
         
         {% if admin.hasOwner() %}
-            <div class="app_authorize_owner app_authorize_node">
-                <div class="app_authorize_dl">
-                    <label class="app_authorize_dt">
+            <div class="sf_authorize_owner sf_authorize_node">
+                <div class="sf_authorize_dl">
+                    <label class="sf_authorize_dt">
                           <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][owner]" value="1" {% if value[admin_name]['owner'] is defined %} checked="checked" {% endif %} />
                           {{ 'form.owner' | trans }}
                     </label>
@@ -39,14 +39,14 @@
         {% endif %}
             
         {% if admin.auth_properties %}
-            <div class="app_authorize_properties app_authorize_node">
-                <label class="app_authorize_dt app_authorize_title">
+            <div class="app_authorize_properties sf_authorize_node">
+                <label class="sf_authorize_dt app_authorize_title">
                     <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][property]" value="1" {% if value[admin_name]['property'] is defined %} checked="checked" {% endif %} />
                     {{ 'form.authorize.properties' |trans }}
                 </label>
             {% for property_name in admin.auth_properties %}
-                   <div class="app_authorize_dl">
-                            <label class="app_authorize_dt">
+                   <div class="sf_authorize_dl">
+                            <label class="sf_authorize_dt">
                                  <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][property][{{ property_name }}]" value="1" {% if value[admin_name]['property'][property_name] is defined %} checked="checked" {% endif %} />
                                  {{ admin.getPropertyLabel(property_name) }}
                             </label>
@@ -71,8 +71,8 @@
         {% endif %}
         
         {% if admin.workflow %}
-            <div class="app_authorize_workflow app_authorize_node">
-                <label class="app_authorize_dt app_authorize_title">
+            <div class="app_authorize_workflow sf_authorize_node">
+                <label class="sf_authorize_dt app_authorize_title">
                    <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow]" value="1" {% if value[admin_name]['workflow'] is defined %} checked="checked" {% endif %} />
                    {{ 'form.workflow' | trans }}
                 </label>
@@ -80,8 +80,8 @@
                     {% if not(status.internal) %}
                          <div class="app_authorize_workflow_node"><!-- workflow node -->
                          
-                         <div class="app_authorize_dl">
-                              <label class="app_authorize_dt">
+                         <div class="sf_authorize_dl">
+                              <label class="sf_authorize_dt">
                                 <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow][{{ workflow_name }}][action]" value="1" {% if value[admin_name]['workflow'][workflow_name]['action'] is defined %} checked="checked" {% endif %} />
                                 {{ admin.getStatusLabelByName(workflow_name) }} 
                               </label>
@@ -104,9 +104,9 @@
                             {% if admin.workflow_auth_permertions[workflow_name]  is defined  %}
                                  
                                  {% if admin.workflow_auth_permertions[workflow_name]['properties'] is defined  %}
-                                       <div class="app_authorize_workflow_properties">
-                                            <div class="app_authorize_dl">
-                                                 <label class="app_authorize_dt">
+                                       <div class="sf_authorize_workflow_properties">
+                                            <div class="sf_authorize_dl">
+                                                 <label class="sf_authorize_dt">
                                                         <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow_properties][{{ workflow_name }}]" value="1" {% if value[admin_name]['workflow_properties'][workflow_name] is defined %} checked="checked" {% endif %} />
                                                          {{ 'form.authorize.properties' |trans }}
                                                  </label>
@@ -126,11 +126,11 @@
                                  {% endif %}
                                  
                                  {% if admin.workflow_auth_permertions[workflow_name]['children']  is defined  %}
-                                        <div class="app_authorize_workflow_children">
+                                        <div class="sf_authorize_workflow_children">
                                                 {% for child_name, child_config in admin.workflow_auth_permertions[workflow_name]['children'] %}
                                                         {% set child = app_admin(child_name) %}
-                                                        <div class="app_authorize_dl">
-                                                            <label class="app_authorize_dt">
+                                                        <div class="sf_authorize_dl">
+                                                            <label class="sf_authorize_dt">
                                                                 <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow_children][{{ workflow_name }}][{{ child_name }}]" value="1" {% if value[admin_name]['workflow_children'][workflow_name][child_name] is defined %} checked="checked" {% endif %} />
                                                                 {{ child.label }}
                                                             </label>
@@ -169,7 +169,7 @@
 
 {% block sf_authorize_widget %}
     {% spaceless %}
-        <div id="{{ id }}" class="authorize_form_box">
+        <div id="{{ id }}" class="sf_authorize_form_box">
         {% for admin_name, admin_children in sf_admin_tree %}
                 {{ _self.macro_authorize_configure(full_name, value, admin_name, admin_children ) }}
         {% endfor %}
@@ -190,7 +190,7 @@
               
                 $('#app_authorize_select_all').click(function(){
                     box.find('input').each(function(){
-                        if( !$(this).closest('.app_authorize_owner').get(0) && !$(this).closest('label').hasClass('app_authorize_readonly_input') ) {
+                        if( !$(this).closest('.sf_authorize_owner').get(0) && !$(this).closest('label').hasClass('app_authorize_readonly_input') ) {
                             this.checked    = true ;
                         } else {
                             this.checked    = false ;
@@ -234,9 +234,9 @@
                 // handle box title  
                 box.find('.app_authorize_title input').each(function(title_index){
                     var title = this ;
-                    var children  = $(this).closest('div').find('.app_authorize_dt input').toArray() ;
+                    var children  = $(this).closest('div').find('.sf_authorize_dt input').toArray() ;
                     for(var i = children.length; i--; ) {
-                        if( children[i] === this || $(children[i]).closest('.app_authorize_workflow_properties').get(0) || $(children[i]).closest('.app_authorize_workflow_children').get(0) ) { 
+                        if( children[i] === this || $(children[i]).closest('.sf_authorize_workflow_properties').get(0) || $(children[i]).closest('.sf_authorize_workflow_children').get(0) ) { 
                             children.splice(i, 1); 
                             continue ;
                         }
@@ -291,24 +291,24 @@
                 });
                 
                 // handle title  
-                box.find('.app_authorize_dt input').each(function(title_index){
+                box.find('.sf_authorize_dt input').each(function(title_index){
                     if( $(this).closest('label').hasClass('app_authorize_title') ) {
                         return ;
                     }
                     var title = this ;
-                    var children  = $(this).closest('.app_authorize_dl').find('input').toArray() ;
+                    var children  = $(this).closest('.sf_authorize_dl').find('input').toArray() ;
                     for(var i = children.length; i--; ) {
                         if( children[i] === this ) { 
                             children.splice(i, 1); 
                             continue ;
                         }
                     }
-                    var owner   = $(this).closest('.app_authorize_owner').get(0) ;
+                    var owner   = $(this).closest('.sf_authorize_owner').get(0) ;
                     var owner_children  = null ;
                     if( owner ) {
                         owner_children  = Array( children.length ) ;
                         (function(){
-                            var es = $(owner).prev('.app_authorize_dl').find('.app_authorize_input input').toArray() ;
+                            var es = $(owner).prev('.sf_authorize_dl').find('.app_authorize_input input').toArray() ;
                             $.each(children, function(i){
                                var action   = $(this).closest('label').attr('name') ;
                                for(var j = es.length; j--; ) {
