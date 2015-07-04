@@ -2,7 +2,7 @@
 {% extends 'form_div_layout.html.twig' %}
 
 {% macro macro_authorize_configure(full_name, value, admin_name, children) %}
-    {% set admin = app_admin(admin_name) %}
+    {% set admin = sf_admin(admin_name) %}
     <fieldset>
         <legend>{{ admin.label }}</legend>
             
@@ -128,7 +128,7 @@
                                  {% if admin.workflow_auth_permertions[workflow_name]['children']  is defined  %}
                                         <div class="sf_authorize_workflow_children">
                                                 {% for child_name, child_config in admin.workflow_auth_permertions[workflow_name]['children'] %}
-                                                        {% set child = app_admin(child_name) %}
+                                                        {% set child = sf_admin(child_name) %}
                                                         <div class="sf_authorize_dl">
                                                             <label class="sf_authorize_dt">
                                                                 <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow_children][{{ workflow_name }}][{{ child_name }}]" value="1" {% if value[admin_name]['workflow_children'][workflow_name][child_name] is defined %} checked="checked" {% endif %} />
