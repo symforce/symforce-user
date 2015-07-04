@@ -47,7 +47,7 @@ class AuthorizeType extends AbstractType {
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['admin_tree']   = $this->container->get('sf.admin.loader')->getAdminTree() ;
+        $view->vars['sf_admin_tree']   = $this->container->get('sf.admin.loader')->getAdminTree() ;
     }
     
     /**
@@ -55,6 +55,6 @@ class AuthorizeType extends AbstractType {
      */
     public function getName()
     {
-        return 'appauthorize';
+        return 'sf_authorize';
     }
 }
