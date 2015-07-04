@@ -12,7 +12,7 @@
                 {{ 'form.authorize.actions' |trans }}
             </label>
             {% for action_name, action in admin.actions %}
-                <label class="app_authorize_input" name="app_authorize_action_{{ action_name }}">
+                <label class="sf_authorize_input" name="sf_authorize_action_{{ action_name }}">
                     <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][action][{{ action_name }}]" value="1" {% if value[admin_name]['action'][action_name] is defined %} checked="checked" {% endif %} />
                     {{ action.label }}
                 </label>
@@ -28,7 +28,7 @@
                     </label>
                     {% for action_name, action in admin.actions %}
                         {% if action.isOwnerAction() %}
-                        <label class="app_authorize_input" name="app_authorize_action_{{ action_name }}">
+                        <label class="sf_authorize_input" name="sf_authorize_action_{{ action_name }}">
                             <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][owner][{{ action_name }}]" value="1" {% if value[admin_name]['owner'][action_name] is defined %} checked="checked" {% endif %} />
                             {{ action.label }}
                         </label>
@@ -39,8 +39,8 @@
         {% endif %}
             
         {% if admin.auth_properties %}
-            <div class="app_authorize_properties sf_authorize_node">
-                <label class="sf_authorize_dt app_authorize_title">
+            <div class="sf_authorize_properties sf_authorize_node">
+                <label class="sf_authorize_dt sf_authorize_title">
                     <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][property]" value="1" {% if value[admin_name]['property'] is defined %} checked="checked" {% endif %} />
                     {{ 'form.authorize.properties' |trans }}
                 </label>
@@ -53,12 +53,12 @@
 
                             {% for action_name, action in admin.actions %}
                                  {% if action.isPropertyAction() %}
-                                    <label class="app_authorize_input">
+                                    <label class="sf_authorize_input">
                                         <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][property][{{ property_name }}][{{ action_name }}]" value="1" {% if value[admin_name]['property'][property_name][action_name] is defined %} checked="checked" {% endif %} />
                                         {{ action.label }}
                                     </label>
                                     {% if action.isFormAction() %}
-                                        <label class="app_authorize_readonly_input">
+                                        <label class="sf_authorize_readonly_input">
                                             <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][property][{{ property_name }}][{{ action_name }}]" value="2" {% if value[admin_name]['property'][property_name][action_name] is defined and 2 == value[admin_name]['property'][property_name][action_name] %}  checked="checked" {% endif %} />
                                             {{ 'form.authorize.readonly' | trans({ '%action%' : action.label }) }}
                                         </label>
@@ -71,14 +71,14 @@
         {% endif %}
         
         {% if admin.workflow %}
-            <div class="app_authorize_workflow sf_authorize_node">
-                <label class="sf_authorize_dt app_authorize_title">
+            <div class="sf_authorize_workflow sf_authorize_node">
+                <label class="sf_authorize_dt sf_authorize_title">
                    <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow]" value="1" {% if value[admin_name]['workflow'] is defined %} checked="checked" {% endif %} />
                    {{ 'form.workflow' | trans }}
                 </label>
                 {% for workflow_name, status in admin.workflow.status %}
                     {% if not(status.internal) %}
-                         <div class="app_authorize_workflow_node"><!-- workflow node -->
+                         <div class="sf_authorize_workflow_node"><!-- workflow node -->
                          
                          <div class="sf_authorize_dl">
                               <label class="sf_authorize_dt">
@@ -87,12 +87,12 @@
                               </label>
                                 {% for action_name, action in admin.actions %}
                                      {% if action.isWorkflowAction() or (action.isDeleteAction() and status['target'] and ('removed' in status['target']) ) %}
-                                        <label class="app_authorize_input">
+                                        <label class="sf_authorize_input">
                                             <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow][{{ workflow_name }}][action][{{ action_name }}]" value="1" {% if value[admin_name]['workflow'][workflow_name]['action'][action_name] is defined %} checked="checked" {% endif %} />
                                             {{ action.label }}
                                         </label>
                                         {% if action.isFormAction() %}
-                                            <label class="app_authorize_readonly_input">
+                                            <label class="sf_authorize_readonly_input">
                                                 <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow][{{ workflow_name }}][action][{{ action_name }}]" value="2" {% if value[admin_name]['workflow'][workflow_name]['action'][action_name] is defined and 2 == value[admin_name]['workflow'][workflow_name]['action'][action_name] %} checked="checked" {% endif %} />
                                                 {{ 'form.authorize.readonly' | trans({ '%action%' : action.label }) }}
                                             </label>
@@ -111,12 +111,12 @@
                                                          {{ 'form.authorize.properties' |trans }}
                                                  </label>
                                                  {% for property in admin.workflow_auth_permertions[workflow_name]['properties'] %}
-                                                     <label class="app_authorize_input">
+                                                     <label class="sf_authorize_input">
                                                          <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow_properties][{{ workflow_name }}][{{ property }}]" value="1" {% if value[admin_name]['workflow_properties'][workflow_name][property] is defined %} checked="checked" {% endif %} />
                                                          {{ property }}
                                                      </label>
                                                  
-                                                 <label class="app_authorize_readonly_input">
+                                                 <label class="sf_authorize_readonly_input">
                                                      <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow_properties][{{ workflow_name }}][{{ property }}]" value="1" {% if value[admin_name]['workflow_properties'][workflow_name][property] is defined and 2 == value[admin_name]['workflow_properties'][workflow_name][property] %} checked="checked" {% endif %} />
                                                      {{ 'form.authorize.readonly' | trans({ '%action%' : property }) }}
                                                 </label>
@@ -136,7 +136,7 @@
                                                             </label>
                                                             {% for action_name in child_config %}
                                                                     {% set action = child.getAction(action_name) %}
-                                                                    <label class="app_authorize_input">
+                                                                    <label class="sf_authorize_input">
                                                                         <input type="checkbox" name="{{ full_name }}[{{ admin_name }}][workflow_children][{{ workflow_name }}][{{ child_name }}][{{ action_name }}]" value="1" {% if value[admin_name]['workflow_children'][workflow_name][child_name][action_name] is defined %} checked="checked" {% endif %} />
                                                                         {{ action.label }}
                                                                     </label>
@@ -176,11 +176,11 @@
         </div>
         <div class="btn-group btn-group-xs" style="margin:8px 0px;">
             {% set tr_path = "form." ~ name ~ ".select_all" %}
-            <button id="app_authorize_select_all" type="button" class="btn btn-default">{{ tr_path |trans }}</button>
+            <button id="sf_authorize_select_all" type="button" class="btn btn-default">{{ tr_path |trans }}</button>
             {% set tr_path = "form." ~ name ~ ".cancel_all" %}
-            <button id="app_authorize_cancel_all" type="button" class="btn btn-default">{{ tr_path |trans }}</button>
+            <button id="sf_authorize_cancel_all" type="button" class="btn btn-default">{{ tr_path |trans }}</button>
             {% set tr_path = "form." ~ name ~ ".default_value" %}
-            <button id="app_authorize_default_value" type="button" class="btn btn-default">{{ tr_path |trans }}</button>
+            <button id="sf_authorize_default_value" type="button" class="btn btn-default">{{ tr_path |trans }}</button>
          </div>
         
         <script type="text/javascript">
@@ -188,9 +188,9 @@
                 
                 var box = $('#' + box_id ) ;
               
-                $('#app_authorize_select_all').click(function(){
+                $('#sf_authorize_select_all').click(function(){
                     box.find('input').each(function(){
-                        if( !$(this).closest('.sf_authorize_owner').get(0) && !$(this).closest('label').hasClass('app_authorize_readonly_input') ) {
+                        if( !$(this).closest('.sf_authorize_owner').get(0) && !$(this).closest('label').hasClass('sf_authorize_readonly_input') ) {
                             this.checked    = true ;
                         } else {
                             this.checked    = false ;
@@ -198,33 +198,33 @@
                     });
                 });
                 
-                $('#app_authorize_cancel_all').click(function(){
+                $('#sf_authorize_cancel_all').click(function(){
                     box.find('input').each(function(){
                         this.checked    = false ;
                     });
                 });
                 
-                $('#app_authorize_default_value').click(function(){
+                $('#sf_authorize_default_value').click(function(){
                     box.find('input').each(function(){
                         this.checked    = this.defaultChecked ;
                     });
                 });
                 
                 box.find('input').click(function(){
-                    $(this).trigger( "app_click");
+                    $(this).trigger( "sf_click");
                 });
                 
                 
                 // handle readonly
-                box.find('.app_authorize_readonly_input').each(function(i){
+                box.find('.sf_authorize_readonly_input').each(function(i){
                     var readonly    = $(this).find('input').get(0) ;
                     var input   = $(this).prev('label').find('input').get(0) ;
-                    $(input).on("app_click", function(evt){
+                    $(input).on("sf_click", function(evt){
                         if( !this.checked ) {
                             readonly.checked = false ;
                         }
                     });
-                    $(readonly).on("app_click", function(evt){
+                    $(readonly).on("sf_click", function(evt){
                         if( this.checked ) {
                             input.checked = true ;
                         }
@@ -232,7 +232,7 @@
                 });
                 
                 // handle box title  
-                box.find('.app_authorize_title input').each(function(title_index){
+                box.find('.sf_authorize_title input').each(function(title_index){
                     var title = this ;
                     var children  = $(this).closest('div').find('.sf_authorize_dt input').toArray() ;
                     for(var i = children.length; i--; ) {
@@ -244,7 +244,7 @@
                     }
                     
                     var iTimer  = null ;
-                    $(title).on("app_click", function(evt){
+                    $(title).on("sf_click", function(evt){
                         if( iTimer ) {
                             clearTimeout(iTimer);
                             iTimer  = null ;
@@ -253,16 +253,16 @@
                             $.each(children, function() {
                                 if( this.checked  ) {
                                     this.checked = false ;
-                                    $(this).trigger( "app_click" ) ;
+                                    $(this).trigger( "sf_click" ) ;
                                 }
                             })
                             return ;
                         }
                         $.each(children, function() {
-                            if( !$(this).closest('label').hasClass('app_authorize_readonly_input') ) {
+                            if( !$(this).closest('label').hasClass('sf_authorize_readonly_input') ) {
                                 if( !this.checked  ) {
                                     this.checked = true ;
-                                    $(this).trigger("app_click") ;
+                                    $(this).trigger("sf_click") ;
                                 }
                             }
                         }) ;
@@ -284,7 +284,7 @@
                     }
                     
                     $.each(children, function() {
-                       $(this).on("app_click", function(evt){
+                       $(this).on("sf_click", function(evt){
                            iTimer   = setTimeout( checkall, 10);
                        });
                     });
@@ -292,7 +292,7 @@
                 
                 // handle title  
                 box.find('.sf_authorize_dt input').each(function(title_index){
-                    if( $(this).closest('label').hasClass('app_authorize_title') ) {
+                    if( $(this).closest('label').hasClass('sf_authorize_title') ) {
                         return ;
                     }
                     var title = this ;
@@ -308,7 +308,7 @@
                     if( owner ) {
                         owner_children  = Array( children.length ) ;
                         (function(){
-                            var es = $(owner).prev('.sf_authorize_dl').find('.app_authorize_input input').toArray() ;
+                            var es = $(owner).prev('.sf_authorize_dl').find('.sf_authorize_input input').toArray() ;
                             $.each(children, function(i){
                                var action   = $(this).closest('label').attr('name') ;
                                for(var j = es.length; j--; ) {
@@ -320,22 +320,22 @@
                         })();
                         
                         $.each(owner_children, function(i){
-                            $(this).on("app_click", function(evt){
+                            $(this).on("sf_click", function(evt){
                                 if( this.checked ) {
                                     if( children[i].checked ) {
                                         children[i].checked = false ;
-                                        $(children[i]).trigger( "app_click") ;
+                                        $(children[i]).trigger( "sf_click") ;
                                     }
                                 }
                             });
                         });
 
                         $.each(children, function(i){
-                            $(this).on("app_click", function(evt){
+                            $(this).on("sf_click", function(evt){
                                 if( this.checked ) {
                                     if( owner_children[i].checked ) {
                                         owner_children[i].checked = false ;
-                                        $(owner_children[i]).trigger( "app_click") ;
+                                        $(owner_children[i]).trigger( "sf_click") ;
                                     }
                                 }
                             });
@@ -344,7 +344,7 @@
                     
                     var iTimer  = null ;
                     var disableTimer  = null ;
-                    $(title).on("app_click", function(evt){
+                    $(title).on("sf_click", function(evt){
                         if( disableTimer ) {
                             return ;
                         }
@@ -360,14 +360,14 @@
                         if( !this.checked ) {
                             $.each(children, function() {
                                 this.checked = false ;
-                                $(this).trigger("app_click") ;
+                                $(this).trigger("sf_click") ;
                             })
                             return ;
                         }
                         $.each(children, function() {
-                            if( !$(this).closest('label').hasClass('app_authorize_readonly_input') ) {
+                            if( !$(this).closest('label').hasClass('sf_authorize_readonly_input') ) {
                                 this.checked = true ;
-                                $(this).trigger("app_click") ;
+                                $(this).trigger("sf_click") ;
                             }
                         }) ;
                     });
@@ -387,12 +387,12 @@
                         }
                         if( title.checked != checked ) {
                             title.checked  = checked ;
-                            $(title).trigger("app_click") ;
+                            $(title).trigger("sf_click") ;
                         }
                     }
                     
                     $.each(children, function() {
-                       $(this).on("app_click", function(evt){
+                       $(this).on("sf_click", function(evt){
                            if( disableTimer ) {
                                return ;
                            }
