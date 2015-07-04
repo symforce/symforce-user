@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Doctrine ;
+namespace Symforce\UserBundle\Doctrine ;
 
 
 use Doctrine\Common\Persistence\ObjectManager;

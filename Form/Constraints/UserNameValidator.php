@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Form\Constraints ;
+namespace Symforce\UserBundle\Form\Constraints ;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

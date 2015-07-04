@@ -1,26 +1,26 @@
 <?php
 
-namespace App\UserBundle\Admin ;
+namespace Symforce\UserBundle\Admin ;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller ;
 use Symfony\Component\HttpFoundation\Request ;
-use App\AdminBundle\Compiler\Cache\ActionCache ;
+use Symforce\AdminBundle\Compiler\Cache\ActionCache ;
 use Symfony\Component\Form\Form ;
 
 use Symfony\Component\Security\Core\SecurityContext;
 
-abstract class UserAdmin extends \App\AdminBundle\Compiler\Cache\AdminCache {
+abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache {
     
     public function adjustFormOptions($object, $property, array & $options){
         if( $property === 'id_card' ) {
-            $options['constraints'][] = new \App\UserBundle\Form\Constraints\IdCard(array(
+            $options['constraints'][] = new \Symforce\UserBundle\Form\Constraints\IdCard(array(
                     'message'  => 
                         $this->trans('app_user.form.id_card.error', array(), $this->tr_domain ) ,
                 )) ;
         }
     }
     
-    public function setUserRegistration(\App\UserBundle\Entity\User $user, \Symfony\Component\HttpFoundation\Request $request) {
+    public function setUserRegistration(\Symforce\UserBundle\Entity\User $user, \Symfony\Component\HttpFoundation\Request $request) {
         $group_admin  = $this->admin_loader->getAdminByName('app_group') ;
         
         $group  = $group_admin->getRepository()->findOneBy( array('default_group'=>true)) ;
@@ -29,15 +29,15 @@ abstract class UserAdmin extends \App\AdminBundle\Compiler\Cache\AdminCache {
         }
         $user->setUserGroup($group) ;
         
-        $log    = new \App\UserBundle\Entity\UserLog() ;
+        $log    = new \Symforce\UserBundle\Entity\UserLog() ;
         $log->setUser($user) ;
-        $log->setType( \App\UserBundle\Entity\UserLog::TYPE_USER_REG ) ; 
+        $log->setType( \Symforce\UserBundle\Entity\UserLog::TYPE_USER_REG ) ; 
         $log_admin  = $this->admin_loader->getAdminByClass($log) ;
         $log_admin->initByRequest($log, $request) ;
         $this->getManager()->persist( $log ) ;
     }
     
-    public function addMember(\App\UserBundle\Entity\User $user, \Symfony\Component\HttpFoundation\Request $request){
+    public function addMember(\Symforce\UserBundle\Entity\User $user, \Symfony\Component\HttpFoundation\Request $request){
         $group_admin  = $this->admin_loader->getAdminByName('app_group') ;
         
         $group  = $group_admin->getRepository()->findOneBy( array('trust_group'=>true) ) ;
@@ -48,9 +48,9 @@ abstract class UserAdmin extends \App\AdminBundle\Compiler\Cache\AdminCache {
         $em = $this->getManager() ;
         $em->persist( $user ) ;
         
-        $log    = new \App\UserBundle\Entity\UserLog() ;
+        $log    = new \Symforce\UserBundle\Entity\UserLog() ;
         $log->setUser($user) ;
-        $log->setType( \App\UserBundle\Entity\UserLog::TYPE_USER_BANK ) ;
+        $log->setType( \Symforce\UserBundle\Entity\UserLog::TYPE_USER_BANK ) ;
         $log_admin  = $this->admin_loader->getAdminByClass($log) ;
         $log_admin->initByRequest($log, $request) ;
         $em->persist( $log ) ;
@@ -133,7 +133,7 @@ abstract class UserAdmin extends \App\AdminBundle\Compiler\Cache\AdminCache {
             if( $error instanceof \Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException ) {
                 $_error = new \Symfony\Component\Form\FormError( $tr->trans('app.login.error.crsf', array(), $app_domain ) ) ;
                 $form->addError( $_error  ) ;
-            } else if ( $error instanceof \App\UserBundle\Exception\CaptchaException ) {
+            } else if ( $error instanceof \Symforce\UserBundle\Exception\CaptchaException ) {
                 $_error = new \Symfony\Component\Form\FormError( $tr->trans('app.login.error.captcha' , array(), $app_domain ) ) ;
                 $form->get('captcha')->addError( $_error ) ;
             } else if( $error instanceof \Symfony\Component\Security\Core\Exception\BadCredentialsException ) { 

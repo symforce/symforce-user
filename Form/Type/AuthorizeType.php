@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Form\Type ;
+namespace Symforce\UserBundle\Form\Type ;
 
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;

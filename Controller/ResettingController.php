@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Controller;
+namespace Symforce\UserBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -77,7 +77,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         $form     = $builder->getForm() ;
         
         $dispatcher = $this->container->get('event_dispatcher');
-        $event = new \App\AdminBundle\Event\FormEvent($form, $request);
+        $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
         $dispatcher->dispatch('app.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -186,7 +186,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
                     'constraints' =>  array (
                              new \Symfony\Component\Validator\Constraints\NotBlank() ,
                              new \Symfony\Component\Validator\Constraints\Length(array("min" => 6, "max"=>"16" )),
-                             new \App\UserBundle\Form\Constraints\Password(array(
+                             new \Symforce\UserBundle\Form\Constraints\Password(array(
                                  'message'  => $tr->trans('app_user.form.plainPassword.error', array(), $domain) ,
                              )) ,
                          )
@@ -200,7 +200,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         
         $form     = $builder->getForm() ;
         
-        $event = new \App\AdminBundle\Event\FormEvent($form, $request);
+        $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
         $dispatcher->dispatch('app.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();

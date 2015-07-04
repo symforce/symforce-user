@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Controller;
+namespace Symforce\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -62,7 +62,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
         $admin = $this->container->get('app.admin.loader')->getAdminByClass( $user ) ;
          
         $form = $this->createFrom($user, $admin ) ;
-        $event = new \App\AdminBundle\Event\FormEvent($form, $request);
+        $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
         $dispatcher->dispatch('app.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -123,7 +123,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
              'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          // new \Symfony\Component\Validator\Constraints\Length(array("min" => 17 , "max"=>18 )),
-                         new \App\UserBundle\Form\Constraints\IdCard(array(
+                         new \Symforce\UserBundle\Form\Constraints\IdCard(array(
                              'message'  => $tr->trans('app_user.form.id_card.error', array(), $domain) ,
                          )) ,
                      ) ,

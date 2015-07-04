@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Controller;
+namespace Symforce\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,7 +25,7 @@ class SecurityController extends Controller
         $form   = $this->container->get('app.admin.loader')->getAdminByName('app_user')->getLoginForm( $request ) ;
         
         $dispatcher = $this->container->get('event_dispatcher');
-        $event = new \App\AdminBundle\Event\FormEvent($form, $request);
+        $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
         $dispatcher->dispatch('app.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse() ;

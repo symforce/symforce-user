@@ -1,11 +1,11 @@
 <?php
 
-namespace App\UserBundle\DataFixtures\ORM;
+namespace Symforce\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\UserBundle\Entity\User;
+use Symforce\UserBundle\Entity\User;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface ;
 

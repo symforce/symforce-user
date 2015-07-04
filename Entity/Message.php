@@ -1,15 +1,15 @@
 <?php
 
-namespace App\UserBundle\Entity;
+namespace Symforce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use App\AdminBundle\Compiler\Annotation as Admin ;
+use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_fos_message") 
- * Admin\Entity("app_message", label="Message", class="App\UserBundle\Admin\MessageAdmin" )
+ * Admin\Entity("app_message", label="Message", class="Symforce\UserBundle\Admin\MessageAdmin" )
  * 
  */
 class Message extends \FOS\MessageBundle\Entity\Message

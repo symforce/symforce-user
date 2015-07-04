@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\DependencyInjection;
+namespace Symforce\UserBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -37,8 +37,8 @@ class AppUserExtension extends Extension
             // $container->setParameter('mopa_bootstrap.form.templating', 'AppAdminBundle:Form:fields.html.twig' ) ;
         }
         
-        $container->setParameter('security.authentication.success_handler.class', 'App\UserBundle\Security\AjaxAuthenticationSuccessHandler' ) ;
-        $container->setParameter('security.authentication.failure_handler.class', 'App\UserBundle\Security\AjaxAuthenticationFailureHandler' ) ;
+        $container->setParameter('security.authentication.success_handler.class', 'Symforce\UserBundle\Security\AjaxAuthenticationSuccessHandler' ) ;
+        $container->setParameter('security.authentication.failure_handler.class', 'Symforce\UserBundle\Security\AjaxAuthenticationFailureHandler' ) ;
     }
     
     public function getAlias()

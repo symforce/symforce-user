@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Exception ;
+namespace Symforce\UserBundle\Exception ;
 
 /**
  * Description of CaptchaException

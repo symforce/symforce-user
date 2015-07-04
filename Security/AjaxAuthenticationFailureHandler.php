@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Security ;
+namespace Symforce\UserBundle\Security ;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ class AjaxAuthenticationFailureHandler extends \Symfony\Component\Security\Http\
                 'message' => $exception->getMessage() ,
                 'type'  => 'login[username]' ,
             );
-            if( $exception instanceof \App\UserBundle\Exception\CaptchaException ) {
+            if( $exception instanceof \Symforce\UserBundle\Exception\CaptchaException ) {
                 $json['type']   = 'login[captcha][code]' ;
             }
             return new \Symfony\Component\HttpFoundation\JsonResponse($json) ;

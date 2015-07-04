@@ -1,12 +1,12 @@
 <?php
 
-namespace App\UserBundle\Entity;
+namespace Symforce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 use FOS\MessageBundle\Model\ParticipantInterface;
 
-use App\AdminBundle\Compiler\Annotation as Admin ;
+use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 /**
  * @ORM\Entity

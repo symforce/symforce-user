@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Security;
+namespace Symforce\UserBundle\Security;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Form\Constraints ;
+namespace Symforce\UserBundle\Form\Constraints ;
 
 class IdCard extends \Symfony\Component\Validator\Constraint {
     public $message = 'This value is not a valid ID Card.' ;

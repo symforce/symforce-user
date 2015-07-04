@@ -1,17 +1,17 @@
 <?php
 
-namespace App\UserBundle\Entity;
+namespace Symforce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\AdminBundle\Compiler\Annotation as Admin ;
+use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 use Doctrine\Common\Collections\ArrayCollection ;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_fos_group")
- * @Admin\Entity("app_group", label="Group", icon="group", position=1, menu="admin_group", dashboard=true, class="App\UserBundle\Admin\GroupAdmin" )
+ * @Admin\Entity("app_group", label="Group", icon="group", position=1, menu="admin_group", dashboard=true, class="Symforce\UserBundle\Admin\GroupAdmin" )
  *
  * @Admin\Action("update")
  * @Admin\Action("delete")

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\UserBundle\Admin ;
+namespace Symforce\UserBundle\Admin ;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller ;
 use Symfony\Component\HttpFoundation\Request ;
-use App\AdminBundle\Compiler\Cache\ActionCache ;
+use Symforce\AdminBundle\Compiler\Cache\ActionCache ;
 use Symfony\Component\Form\Form ;
 
 
-abstract class GroupAdmin extends \App\AdminBundle\Compiler\Cache\AdminCache {
+abstract class GroupAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache {
     
     public function onUpdate(Controller $controller, Request $request, ActionCache $action, $object, Form $form ){
         if( $object->default_group || $object->trust_group ) {

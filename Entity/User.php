@@ -1,10 +1,10 @@
 <?php
 
-namespace App\UserBundle\Entity;
+namespace Symforce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\AdminBundle\Compiler\Annotation as Admin ;
+use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 use FOS\UserBundle\Model\GroupInterface ;
 use Doctrine\Common\Collections\ArrayCollection ;
@@ -84,7 +84,7 @@ class User extends \FOS\UserBundle\Model\User implements ParticipantInterface
     
     
     /** 
-     * @ORM\OneToOne(targetEntity="App\AdminBundle\Entity\File")
+     * @ORM\OneToOne(targetEntity="Symforce\AdminBundle\Entity\File")
      * @Admin\Form(label="头像", type="image", max_size="1m", image_size="128x128", small_size="24x24" )
      */
     public $avatar ;

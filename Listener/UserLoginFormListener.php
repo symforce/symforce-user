@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Listener ;
+namespace Symforce\UserBundle\Listener ;
 
 use Symfony\Component\Security\Http\Session\SessionAuthenticationStrategyInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
@@ -25,7 +25,7 @@ use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener ;
 use Symfony\Component\Security\Http\Firewall\AbstractAuthenticationListener ;
 
-use App\UserBundle\Exception\CaptchaException ;
+use Symforce\UserBundle\Exception\CaptchaException ;
  
 /**
  * Description of UserLoginFormListener

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UserBundle\Form\MetaType ;
+namespace Symforce\UserBundle\Form\MetaType ;
 
-use App\AdminBundle\Compiler\MetaType\Form\Element ;
-use App\AdminBundle\Compiler\Annotation\FormType ;
+use Symforce\AdminBundle\Compiler\MetaType\Form\Element ;
+use Symforce\AdminBundle\Compiler\Annotation\FormType ;
 
 /**
  * @FormType("appauthorize", orm="array")

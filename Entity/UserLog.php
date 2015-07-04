@@ -1,10 +1,10 @@
 <?php
 
-namespace App\UserBundle\Entity;
+namespace Symforce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use App\AdminBundle\Compiler\Annotation as Admin ;
+use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 use FOS\UserBundle\Model\GroupInterface ;
 use Doctrine\Common\Collections\ArrayCollection ;

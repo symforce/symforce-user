@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Controller;
+namespace Symforce\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +47,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
         $admin = $this->container->get('app.admin.loader')->getAdminByClass( $user ) ;
          
         $form = $this->createFrom($user, $admin ) ;
-        $event = new \App\AdminBundle\Event\FormEvent($form, $request);
+        $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
         $dispatcher->dispatch('app.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -203,7 +203,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                     'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          new \Symfony\Component\Validator\Constraints\Length(array("min" => 2 , "max"=>16 )),
-                         new \App\UserBundle\Form\Constraints\UserName() ,
+                         new \Symforce\UserBundle\Form\Constraints\UserName() ,
                      )
                 ))
                  
@@ -226,7 +226,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          new \Symfony\Component\Validator\Constraints\Length(array("min" => 6, "max"=>"16" )),
-                         new \App\UserBundle\Form\Constraints\Password(array(
+                         new \Symforce\UserBundle\Form\Constraints\Password(array(
                              'message'  => $tr->trans('app_user.form.plainPassword.error', array(), $domain) ,
                          )) ,
                      )
@@ -241,7 +241,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          // new \Symfony\Component\Validator\Constraints\Length(array("min" => 17 , "max"=>18 )),
-                         new \App\UserBundle\Form\Constraints\MobilePhone(array(
+                         new \Symforce\UserBundle\Form\Constraints\MobilePhone(array(
                              'message'  => $tr->trans('app_user.form.mobile_phone_number.error', array(), $domain) ,
                          )) ,
                      )
@@ -255,7 +255,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                         ), $domain ) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
-                         new \App\UserBundle\Form\Constraints\ChineseName(array(
+                         new \Symforce\UserBundle\Form\Constraints\ChineseName(array(
                              'message'  => $tr->trans('app_user.form.real_name.error', array(), $domain) ,
                          )) ,
                      )
@@ -270,7 +270,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          // new \Symfony\Component\Validator\Constraints\Length(array("min" => 17 , "max"=>18 )),
-                         new \App\UserBundle\Form\Constraints\IdCard(array(
+                         new \Symforce\UserBundle\Form\Constraints\IdCard(array(
                              'message'  => $tr->trans('app_user.form.id_card.error', array(), $domain) ,
                          )) ,
                      )

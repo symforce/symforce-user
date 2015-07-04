@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle\Listener ;
+namespace Symforce\UserBundle\Listener ;
  
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
@@ -46,9 +46,9 @@ class FosUserSubscriber implements EventSubscriberInterface
         $user   = $event->getUser() ;
         $request  = $event->getRequest() ;
         
-        $log    = new \App\UserBundle\Entity\UserLog() ;
+        $log    = new \Symforce\UserBundle\Entity\UserLog() ;
         $log->setUser($user) ;
-        $log->setType( \App\UserBundle\Entity\UserLog::TYPE_USER_CONFIRM ) ;
+        $log->setType( \Symforce\UserBundle\Entity\UserLog::TYPE_USER_CONFIRM ) ;
         
         $log_admin  = $this->container->get('app.admin.loader')->getAdminByClass($log) ;
         $log_admin->initByRequest($log, $request) ;
