@@ -41,7 +41,7 @@ class ChangePasswordController extends \FOS\UserBundle\Controller\ChangePassword
             return $event->getResponse();
         }
 
-        $admin = $this->container->get('symforce.admin.loader')->getAdminByClass( $user ) ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByClass( $user ) ;
          
         $form = $this->createFrom($user, $admin ) ;
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);

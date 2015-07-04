@@ -37,7 +37,7 @@ class FosUserSubscriber implements EventSubscriberInterface
         $form   = $event->getForm() ;
         $user   = $form->getData() ;
         $request  = $event->getRequest() ;
-        $admin = $this->container->get('symforce.admin.loader')->getAdminByClass( get_class($user) ) ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByClass( get_class($user) ) ;
         $admin->setUserRegistration($user, $request);
     }
 
@@ -50,7 +50,7 @@ class FosUserSubscriber implements EventSubscriberInterface
         $log->setUser($user) ;
         $log->setType( \Symforce\UserBundle\Entity\UserLog::TYPE_USER_CONFIRM ) ;
         
-        $log_admin  = $this->container->get('symforce.admin.loader')->getAdminByClass($log) ;
+        $log_admin  = $this->container->get('sf.admin.loader')->getAdminByClass($log) ;
         $log_admin->initByRequest($log, $request) ;
         $em     = $log_admin->getManager() ;
         $em->persist( $log ) ;

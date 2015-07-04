@@ -44,7 +44,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
             return $event->getResponse();
         }
 
-        $admin = $this->container->get('symforce.admin.loader')->getAdminByClass( $user ) ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByClass( $user ) ;
          
         $form = $this->createFrom($user, $admin ) ;
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
@@ -92,7 +92,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
      * @Route("/check-email", name="fos_user_registration_check_email", methods="GET")
      */
     public function checkEmailAction() {
-        $admin = $this->container->get('symforce.admin.loader')->getAdminByName( 'app_user') ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByName( 'app_user') ;
         $email = $this->container->get('session')->get('fos_user_send_confirmation_email/email') ;
         if( !$email ) {
             return $this->container->get('templating')->renderResponse('AppUserBundle:Registration:checkEmail.html.twig' , array(
@@ -171,7 +171,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
         }
          
          $title = $tr->trans('app_user.registration.title', array(
-                    '%brand%' =>   $tr->trans('symforce.admin.brand', array(), $admin->getAppDomain() ) ,
+                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
                 ), $domain) ;
          
          $builder = $this->container->get('form.factory')->createBuilder( 'form', $user , array(
@@ -281,7 +281,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'label_render' => false ,
                 'translation_domain' => $domain ,
                 'value_text'  => $tr->trans('app_user.form.id_term.text', array(
-                    '%brand%' =>   $tr->trans('symforce.admin.brand', array(), $admin->getAppDomain() ) ,
+                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
                 ), $domain) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank( array(
@@ -299,7 +299,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'label' => 'app_user.form.registration_term.label' ,
                 'translation_domain' => $domain ,
                 'value_text'  => $tr->trans('app_user.form.registration_term.text', array(
-                    '%brand%' =>   $tr->trans('symforce.admin.brand', array(), $admin->getAppDomain() ) ,
+                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
                     '%url%'   => $this->container->get('router')->generate('fos_user_registration_term') ,
                 ), $domain) ,
                 'constraints' =>  array (

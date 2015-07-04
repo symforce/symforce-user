@@ -43,7 +43,7 @@ class AuthorizeType extends AbstractType {
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['admin_tree']   = $this->app->get('symforce.admin.loader')->getAdminTree() ;
+        $view->vars['admin_tree']   = $this->app->get('sf.admin.loader')->getAdminTree() ;
     }
     
     /**

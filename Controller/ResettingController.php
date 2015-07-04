@@ -36,7 +36,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         
         $tr = $this->container->get('translator') ;
         $domain = 'AppUserBundle' ;
-        $app_domain  = $this->container->getParameter('symforce.admin.domain') ;
+        $app_domain  = $this->container->getParameter('sf.admin.domain') ;
       
         $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'form', null, array(
             'label'  => 'app_user.resetting.title' ,
@@ -158,7 +158,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         
         $tr = $this->container->get('translator') ;
         $domain = 'AppUserBundle' ;
-        $app_domain  = $this->container->getParameter('symforce.admin.domain') ;
+        $app_domain  = $this->container->getParameter('sf.admin.domain') ;
         
         $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'form', $user, array(
             'label'  => 'app_user.resetting.title' ,

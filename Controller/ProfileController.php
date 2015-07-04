@@ -59,7 +59,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
         }
 
       
-        $admin = $this->container->get('symforce.admin.loader')->getAdminByClass( $user ) ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByClass( $user ) ;
          
         $form = $this->createFrom($user, $admin ) ;
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
