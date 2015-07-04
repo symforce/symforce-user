@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType ;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\DependencyInjection\ContainerInterface ;
 
 
 /**
@@ -16,11 +17,14 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * @author loong
  */
 class AuthorizeType extends AbstractType {
-    
-    protected $app ;
 
-    public function setContainer($app){
-        $this->app  = $app ;
+    /**
+     * @var ContainerInterface
+     */
+    protected $container ;
+
+    public function setContainer(ContainerInterface $container){
+        $this->container  = $container ;
     }
 
 
@@ -43,7 +47,7 @@ class AuthorizeType extends AbstractType {
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['admin_tree']   = $this->app->get('sf.admin.loader')->getAdminTree() ;
+        $view->vars['admin_tree']   = $this->container->get('sf.admin.loader')->getAdminTree() ;
     }
     
     /**
