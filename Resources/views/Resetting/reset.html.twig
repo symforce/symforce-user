@@ -1,6 +1,6 @@
 {% extends "AppWebBundle::page_layout.html.twig" %}
 
-{% block app_content_main %}
+{% block sf_content_main %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="form-horizontal" id="reset_form">
