@@ -71,7 +71,7 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
         }
         
         $tr = $this->container->get('translator') ;
-        $app_domain  = $this->container->getParameter('app.admin.domain') ;
+        $app_domain  = $this->container->getParameter('symforce.admin.domain') ;
       
         $form_options   = array(
         ) ;
@@ -156,7 +156,7 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
     
     public function getLoginErrors() {
         $tr = $this->container->get('translator') ;
-        $app_domain  = $this->container->getParameter('app.admin.domain') ;
+        $app_domain  = $this->container->getParameter('symforce.admin.domain') ;
         return array(
             'captchaexception'  => $tr->trans('app.login.error.captcha' , array(), $app_domain ) ,
             'badcredentialsexception'  => $tr->trans('app.login.error.credentials' , array(), $app_domain ) ,
