@@ -10,8 +10,8 @@ use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="sf_fos_message_thread")
- * Admin\Entity("sf_message_thread")
+ * @ORM\Table(name="fos_message_thread")
+ * Admin\Entity("fos_message_thread")
  */
 class MessageThread extends \FOS\MessageBundle\Entity\Thread
 {

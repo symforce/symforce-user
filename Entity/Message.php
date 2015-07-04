@@ -8,8 +8,8 @@ use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="sf_fos_message") 
- * Admin\Entity("sf_message", label="Message", class="Symforce\UserBundle\Admin\MessageAdmin" )
+ * @ORM\Table(name="fos_message")
+ * Admin\Entity("fos_message", label="Message", class="Symforce\UserBundle\Admin\MessageAdmin" )
  * 
  */
 class Message extends \FOS\MessageBundle\Entity\Message
