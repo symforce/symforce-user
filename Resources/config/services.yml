@@ -2,14 +2,14 @@
 
 services:
     
-    app.fos_user.listener:
+    sf.fos_user.listener:
         class: Symforce\UserBundle\Listener\FosUserSubscriber
         calls:
             - [ setContainer, ["@service_container"] ]
         tags:
             - { name:"kernel.event_subscriber" }
     
-    app.form.type.authorize:
+    sf.form.type.authorize:
         class: Symforce\UserBundle\Form\Type\AuthorizeType
         calls:
             - [ setContainer, ["@service_container"] ]

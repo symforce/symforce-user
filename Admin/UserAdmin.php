@@ -15,13 +15,13 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
         if( $property === 'id_card' ) {
             $options['constraints'][] = new \Symforce\UserBundle\Form\Constraints\IdCard(array(
                     'message'  => 
-                        $this->trans('app_user.form.id_card.error', array(), $this->tr_domain ) ,
+                        $this->trans('sf_user.form.id_card.error', array(), $this->tr_domain ) ,
                 )) ;
         }
     }
     
     public function setUserRegistration(\Symforce\UserBundle\Entity\User $user, \Symfony\Component\HttpFoundation\Request $request) {
-        $group_admin  = $this->admin_loader->getAdminByName('app_group') ;
+        $group_admin  = $this->admin_loader->getAdminByName('sf_group') ;
         
         $group  = $group_admin->getRepository()->findOneBy( array('default_group'=>true)) ;
         if( !$group ) {
@@ -38,7 +38,7 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
     }
     
     public function addMember(\Symforce\UserBundle\Entity\User $user, \Symfony\Component\HttpFoundation\Request $request){
-        $group_admin  = $this->admin_loader->getAdminByName('app_group') ;
+        $group_admin  = $this->admin_loader->getAdminByName('sf_group') ;
         
         $group  = $group_admin->getRepository()->findOneBy( array('trust_group'=>true) ) ;
         if( !$group ) {
@@ -71,14 +71,14 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
         }
         
         $tr = $this->container->get('translator') ;
-        $app_domain  = $this->container->getParameter('sf.admin.domain') ;
+        $sf_domain  = $this->container->getParameter('sf.admin.domain') ;
       
         $form_options   = array(
         ) ;
         
         if( $with_title ) {
-            $form_options['label']  = 'app.login.label' ;
-            $form_options['translation_domain']  = $app_domain;
+            $form_options['label']  = 'sf.login.label' ;
+            $form_options['translation_domain']  = $sf_domain;
         } else {
             $form_options['label_render']  = false  ;
         }
@@ -92,18 +92,18 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
         
         $builder
                     ->add('username', 'text', array(
-                        'label' => 'app.login.username.label' ,
-                        'translation_domain' => $app_domain ,
+                        'label' => 'sf.login.username.label' ,
+                        'translation_domain' => $sf_domain ,
                         'data'  => $session->get(SecurityContext::LAST_USERNAME) ,
                         // 'horizontal_input_wrapper_class' => 'col-xs-6',
                         'input_width'   => 46 ,
                         'attr' => array(
-                            'placeholder' => 'app.login.username.placeholder' ,
+                            'placeholder' => 'sf.login.username.placeholder' ,
                         )
                     ) )
                     ->add('password', 'password', array(
-                        'label'  => 'app.login.password.label' ,
-                        'translation_domain' => $app_domain ,
+                        'label'  => 'sf.login.password.label' ,
+                        'translation_domain' => $sf_domain ,
                         'input_width'   => 46 ,
                         // 'horizontal_input_wrapper_class' => 'col-xs-6',
                         'attr' => array(
@@ -112,18 +112,18 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
                     ) )
                 
                     ->add('captcha', 'appcaptcha', array(
-                        'label' => 'app.form.captcha.label' ,
-                        'translation_domain' => $app_domain ,
+                        'label' => 'sf.form.captcha.label' ,
+                        'translation_domain' => $sf_domain ,
                     ))
                 
                     ->add('remembme', 'appcheckbox', array(
                         'label_render' => false ,
-                        'translation_domain' => $app_domain ,
+                        'translation_domain' => $sf_domain ,
                         'required'  => false ,
-                        'value_text'  =>'app.login.remembme.label' ,
-                        'inline_help' => $tr->trans('app.login.remembme.resetting' ,  array(
+                        'value_text'  =>'sf.login.remembme.label' ,
+                        'inline_help' => $tr->trans('sf.login.remembme.resetting' ,  array(
                             '%url%' => $router->generate('fos_user_resetting_request') ,
-                        ), $app_domain) ,
+                        ), $sf_domain) ,
                     ))
                 ;
         
@@ -131,16 +131,16 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
         
         if( $error ) {
             if( $error instanceof \Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException ) {
-                $_error = new \Symfony\Component\Form\FormError( $tr->trans('app.login.error.crsf', array(), $app_domain ) ) ;
+                $_error = new \Symfony\Component\Form\FormError( $tr->trans('sf.login.error.crsf', array(), $sf_domain ) ) ;
                 $form->addError( $_error  ) ;
             } else if ( $error instanceof \Symforce\UserBundle\Exception\CaptchaException ) {
-                $_error = new \Symfony\Component\Form\FormError( $tr->trans('app.login.error.captcha' , array(), $app_domain ) ) ;
+                $_error = new \Symfony\Component\Form\FormError( $tr->trans('sf.login.error.captcha' , array(), $sf_domain ) ) ;
                 $form->get('captcha')->addError( $_error ) ;
             } else if( $error instanceof \Symfony\Component\Security\Core\Exception\BadCredentialsException ) { 
-                $_error = new \Symfony\Component\Form\FormError( $tr->trans('app.login.error.credentials' , array(), $app_domain ) ) ;
+                $_error = new \Symfony\Component\Form\FormError( $tr->trans('sf.login.error.credentials' , array(), $sf_domain ) ) ;
                 $form->get('username')->addError( $_error ) ;
             } else if( $error instanceof \Symfony\Component\Security\Core\Exception\DisabledException ) {
-                $_error = new \Symfony\Component\Form\FormError( $tr->trans('app.login.error.disabled' , array(), $app_domain ) ) ;
+                $_error = new \Symfony\Component\Form\FormError( $tr->trans('sf.login.error.disabled' , array(), $sf_domain ) ) ;
                 $form->get('username')->addError( $_error ) ;
             } else {
                 $_error = new \Symfony\Component\Form\FormError( $error->getMessage() ) ;
@@ -156,12 +156,12 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
     
     public function getLoginErrors() {
         $tr = $this->container->get('translator') ;
-        $app_domain  = $this->container->getParameter('sf.admin.domain') ;
+        $sf_domain  = $this->container->getParameter('sf.admin.domain') ;
         return array(
-            'captchaexception'  => $tr->trans('app.login.error.captcha' , array(), $app_domain ) ,
-            'badcredentialsexception'  => $tr->trans('app.login.error.credentials' , array(), $app_domain ) ,
-            'disabledexception'  => $tr->trans('app.login.error.disabled', array(), $app_domain ) ,
-            'invalidcsrftokenexception'  => $tr->trans('app.login.error.crsf', array(), $app_domain ) ,
+            'captchaexception'  => $tr->trans('sf.login.error.captcha' , array(), $sf_domain ) ,
+            'badcredentialsexception'  => $tr->trans('sf.login.error.credentials' , array(), $sf_domain ) ,
+            'disabledexception'  => $tr->trans('sf.login.error.disabled', array(), $sf_domain ) ,
+            'invalidcsrftokenexception'  => $tr->trans('sf.login.error.crsf', array(), $sf_domain ) ,
         );
     }
 }

@@ -9,8 +9,8 @@ use Symforce\AdminBundle\Compiler\Annotation as Admin ;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="app_fos_message_metadata")
- * Admin\Entity("app_message_metadata")
+ * @ORM\Table(name="sf_fos_message_metadata")
+ * Admin\Entity("sf_message_metadata")
  * 
  */
 class MessageMetadata extends \FOS\MessageBundle\Entity\MessageMetadata

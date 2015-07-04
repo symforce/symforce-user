@@ -45,7 +45,7 @@ class ChangePasswordController extends \FOS\UserBundle\Controller\ChangePassword
          
         $form = $this->createFrom($user, $admin ) ;
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
-        $dispatcher->dispatch('app.event.form', $event) ;
+        $dispatcher->dispatch('sf.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
@@ -79,7 +79,7 @@ class ChangePasswordController extends \FOS\UserBundle\Controller\ChangePassword
     
     private function createFrom($user, $admin){
          $domain    = $admin->getDomain() ;
-         $app_domain    = $admin->getAppDomain() ;
+         $sf_domain    = $admin->getAppDomain() ;
          $tr     = $this->container->get('translator');
          
          $constraints   = array() ;
@@ -109,13 +109,13 @@ class ChangePasswordController extends \FOS\UserBundle\Controller\ChangePassword
                     'translation_domain' => $domain ,
                  ),
                 'first_options' => array(
-                        'label' => 'app_user.form.plainPassword.label' ,
-                        'inline_help' => $tr->trans('app_user.form.plainPassword.help' ,  array(
+                        'label' => 'sf_user.form.plainPassword.label' ,
+                        'inline_help' => $tr->trans('sf_user.form.plainPassword.help' ,  array(
 
                         ), $domain ) ,
                     ),
                 'second_options' => array(
-                        'label' => 'app_user.form.password_confirmation.label' ,
+                        'label' => 'sf_user.form.password_confirmation.label' ,
                         'input_width'   => false ,
                     ),
                 'invalid_message' => 'fos_user.password.mismatch',
@@ -123,7 +123,7 @@ class ChangePasswordController extends \FOS\UserBundle\Controller\ChangePassword
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          new \Symfony\Component\Validator\Constraints\Length(array("min" => 6, "max"=>"16" )),
                          new \Symforce\UserBundle\Form\Constraints\Password(array(
-                             'message'  => $tr->trans('app_user.form.plainPassword.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.plainPassword.error', array(), $domain) ,
                          )) ,
                      )
             )) 

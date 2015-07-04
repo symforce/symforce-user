@@ -63,7 +63,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
          
         $form = $this->createFrom($user, $admin ) ;
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
-        $dispatcher->dispatch('app.event.form', $event) ;
+        $dispatcher->dispatch('sf.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
@@ -98,7 +98,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
     
     private function createFrom($user, $admin){
          $domain    = $admin->getDomain() ;
-         $app_domain    = $admin->getAppDomain() ;
+         $sf_domain    = $admin->getAppDomain() ;
          $tr     = $this->container->get('translator');
          
          $constraints   = array() ;
@@ -124,7 +124,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          // new \Symfony\Component\Validator\Constraints\Length(array("min" => 17 , "max"=>18 )),
                          new \Symforce\UserBundle\Form\Constraints\IdCard(array(
-                             'message'  => $tr->trans('app_user.form.id_card.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.id_card.error', array(), $domain) ,
                          )) ,
                      ) ,
          ));

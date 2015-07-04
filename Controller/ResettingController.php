@@ -36,20 +36,20 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         
         $tr = $this->container->get('translator') ;
         $domain = 'AppUserBundle' ;
-        $app_domain  = $this->container->getParameter('sf.admin.domain') ;
+        $sf_domain  = $this->container->getParameter('sf.admin.domain') ;
       
         $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'form', null, array(
-            'label'  => 'app_user.resetting.title' ,
+            'label'  => 'sf_user.resetting.title' ,
             'translation_domain' => $domain ,
         )) ; 
         
         $builder
                     ->add('username', 'text', array(
-                        'label' => 'app.login.username.label' ,
-                        'translation_domain' => $app_domain ,
+                        'label' => 'sf.login.username.label' ,
+                        'translation_domain' => $sf_domain ,
                         'input_width'   => 46 ,
                         'attr' => array(
-                            'placeholder' => 'app.login.username.placeholder' ,
+                            'placeholder' => 'sf.login.username.placeholder' ,
                         ),
                         'constraints'   => array(
                             new \Symfony\Component\Validator\Constraints\Callback(function($username, \Symfony\Component\Validator\ExecutionContext $context ) use($tr){
@@ -68,8 +68,8 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
                     ) )
                 
                     ->add('captcha', 'appcaptcha', array(
-                        'label' => 'app.form.captcha.label' ,
-                        'translation_domain' => $app_domain ,
+                        'label' => 'sf.form.captcha.label' ,
+                        'translation_domain' => $sf_domain ,
                     ))
                 
                 ;
@@ -78,7 +78,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         
         $dispatcher = $this->container->get('event_dispatcher');
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
-        $dispatcher->dispatch('app.event.form', $event) ;
+        $dispatcher->dispatch('sf.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
@@ -158,10 +158,10 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         
         $tr = $this->container->get('translator') ;
         $domain = 'AppUserBundle' ;
-        $app_domain  = $this->container->getParameter('sf.admin.domain') ;
+        $sf_domain  = $this->container->getParameter('sf.admin.domain') ;
         
         $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'form', $user, array(
-            'label'  => 'app_user.resetting.title' ,
+            'label'  => 'sf_user.resetting.title' ,
             'translation_domain' => $domain ,
         )) ; 
         
@@ -173,13 +173,13 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
                         'translation_domain' => $domain ,
                      ),
                     'first_options' => array(
-                            'label' => 'app_user.form.plainPassword.label' ,
-                            'inline_help' => $tr->trans('app_user.form.plainPassword.help' ,  array(
+                            'label' => 'sf_user.form.plainPassword.label' ,
+                            'inline_help' => $tr->trans('sf_user.form.plainPassword.help' ,  array(
 
                             ), $domain ) ,
                         ),
                     'second_options' => array(
-                            'label' => 'app_user.form.password_confirmation.label' ,
+                            'label' => 'sf_user.form.password_confirmation.label' ,
                             'input_width'   => false ,
                         ),
                     'invalid_message' => 'fos_user.password.mismatch',
@@ -187,13 +187,13 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
                              new \Symfony\Component\Validator\Constraints\NotBlank() ,
                              new \Symfony\Component\Validator\Constraints\Length(array("min" => 6, "max"=>"16" )),
                              new \Symforce\UserBundle\Form\Constraints\Password(array(
-                                 'message'  => $tr->trans('app_user.form.plainPassword.error', array(), $domain) ,
+                                 'message'  => $tr->trans('sf_user.form.plainPassword.error', array(), $domain) ,
                              )) ,
                          )
                 )) 
                 ->add('captcha', 'appcaptcha', array(
-                    'label' => 'app.form.captcha.label' ,
-                    'translation_domain' => $app_domain ,
+                    'label' => 'sf.form.captcha.label' ,
+                    'translation_domain' => $sf_domain ,
                 ))
                 
                 ;
@@ -201,7 +201,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
         $form     = $builder->getForm() ;
         
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
-        $dispatcher->dispatch('app.event.form', $event) ;
+        $dispatcher->dispatch('sf.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }

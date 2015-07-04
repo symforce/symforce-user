@@ -13,8 +13,8 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="app_fos_user_log")
- * @Admin\Entity("app_user_log", label="User Logs", string="type", icon="user" )
+ * @ORM\Table(name="sf_fos_user_log")
+ * @Admin\Entity("sf_user_log", label="User Logs", string="type", icon="user" )
  * 
  */
 class UserLog

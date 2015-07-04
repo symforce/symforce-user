@@ -10,8 +10,8 @@ use Doctrine\Common\Collections\ArrayCollection ;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="app_fos_group")
- * @Admin\Entity("app_group", label="Group", icon="group", position=1, menu="admin_group", dashboard=true, class="Symforce\UserBundle\Admin\GroupAdmin" )
+ * @ORM\Table(name="sf_fos_group")
+ * @Admin\Entity("sf_group", label="Group", icon="group", position=1, menu="admin_group", dashboard=true, class="Symforce\UserBundle\Admin\GroupAdmin" )
  *
  * @Admin\Action("update")
  * @Admin\Action("delete")

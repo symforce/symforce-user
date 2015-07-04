@@ -48,7 +48,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
          
         $form = $this->createFrom($user, $admin ) ;
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
-        $dispatcher->dispatch('app.event.form', $event) ;
+        $dispatcher->dispatch('sf.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
@@ -92,7 +92,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
      * @Route("/check-email", name="fos_user_registration_check_email", methods="GET")
      */
     public function checkEmailAction() {
-        $admin = $this->container->get('sf.admin.loader')->getAdminByName( 'app_user') ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByName( 'sf_user') ;
         $email = $this->container->get('session')->get('fos_user_send_confirmation_email/email') ;
         if( !$email ) {
             return $this->container->get('templating')->renderResponse('AppUserBundle:Registration:checkEmail.html.twig' , array(
@@ -158,7 +158,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
     
     private function createFrom($user, $admin ){
          $domain    = $admin->getDomain() ;
-         $app_domain    = $admin->getAppDomain() ;
+         $sf_domain    = $admin->getAppDomain() ;
          $tr     = $this->container->get('translator');
          
          $constraints   = array() ;
@@ -166,11 +166,11 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
         if( !$this->container->getParameter('kernel.debug') ) {
              $constraints[] = new \Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity(array( 
                     "fields" => "id_card", 
-                    "message" => $tr->trans("app_user.form.id_card.unique", array(), $domain ) ,
+                    "message" => $tr->trans("sf_user.form.id_card.unique", array(), $domain ) ,
                  )) ;
         }
          
-         $title = $tr->trans('app_user.registration.title', array(
+         $title = $tr->trans('sf_user.registration.title', array(
                     '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
                 ), $domain) ;
          
@@ -181,9 +181,9 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
          
          $builder
             ->add('email', 'email', array(
-                    'label' => 'app_user.form.email.label' ,
+                    'label' => 'sf_user.form.email.label' ,
                     'translation_domain' => $domain ,
-                    'inline_help' => $tr->trans('app_user.form.email.help' ,  array(
+                    'inline_help' => $tr->trans('sf_user.form.email.help' ,  array(
                         
                     ), $domain ) ,
                     'constraints' =>  array (
@@ -195,9 +195,9 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 ))
                  
             ->add('username', null, array(
-                    'label' => 'app_user.form.username.label' ,
+                    'label' => 'sf_user.form.username.label' ,
                     'translation_domain' => $domain ,
-                    'inline_help' => $tr->trans('app_user.form.username.help' ,  array(
+                    'inline_help' => $tr->trans('sf_user.form.username.help' ,  array(
                         
                     ), $domain ) ,
                     'constraints' =>  array (
@@ -213,13 +213,13 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                     'translation_domain' => $domain ,
                  ),
                 'first_options' => array(
-                        'label' => 'app_user.form.plainPassword.label' ,
-                        'inline_help' => $tr->trans('app_user.form.plainPassword.help' ,  array(
+                        'label' => 'sf_user.form.plainPassword.label' ,
+                        'inline_help' => $tr->trans('sf_user.form.plainPassword.help' ,  array(
 
                         ), $domain ) ,
                     ),
                 'second_options' => array(
-                        'label' => 'app_user.form.password_confirmation.label' ,
+                        'label' => 'sf_user.form.password_confirmation.label' ,
                         'input_width'   => false ,
                     ),
                 'invalid_message' => 'fos_user.password.mismatch',
@@ -227,51 +227,51 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          new \Symfony\Component\Validator\Constraints\Length(array("min" => 6, "max"=>"16" )),
                          new \Symforce\UserBundle\Form\Constraints\Password(array(
-                             'message'  => $tr->trans('app_user.form.plainPassword.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.plainPassword.error', array(), $domain) ,
                          )) ,
                      )
             )) 
             
             ->add('mobile_phone_number', 'text', array(
-                'label' => 'app_user.form.mobile_phone_number.label' ,
+                'label' => 'sf_user.form.mobile_phone_number.label' ,
                 'translation_domain' => $domain ,
-                'inline_help' => $tr->trans('app_user.form.mobile_phone_number.help' ,  array(
+                'inline_help' => $tr->trans('sf_user.form.mobile_phone_number.help' ,  array(
 
                         ), $domain ) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          // new \Symfony\Component\Validator\Constraints\Length(array("min" => 17 , "max"=>18 )),
                          new \Symforce\UserBundle\Form\Constraints\MobilePhone(array(
-                             'message'  => $tr->trans('app_user.form.mobile_phone_number.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.mobile_phone_number.error', array(), $domain) ,
                          )) ,
                      )
             )) 
                  
             ->add('real_name', 'text', array(
-                'label' => 'app_user.form.real_name.label' ,
+                'label' => 'sf_user.form.real_name.label' ,
                 'translation_domain' => $domain ,
-                'inline_help' => $tr->trans('app_user.form.real_name.help' ,  array(
+                'inline_help' => $tr->trans('sf_user.form.real_name.help' ,  array(
 
                         ), $domain ) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          new \Symforce\UserBundle\Form\Constraints\ChineseName(array(
-                             'message'  => $tr->trans('app_user.form.real_name.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.real_name.error', array(), $domain) ,
                          )) ,
                      )
             )) 
                  
             ->add('id_card', 'text', array(
-                'label' => 'app_user.form.id_card.label' ,
+                'label' => 'sf_user.form.id_card.label' ,
                 'translation_domain' => $domain ,
-                'inline_help' => $tr->trans('app_user.form.id_card.help' ,  array(
+                'inline_help' => $tr->trans('sf_user.form.id_card.help' ,  array(
 
                         ), $domain ) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank() ,
                          // new \Symfony\Component\Validator\Constraints\Length(array("min" => 17 , "max"=>18 )),
                          new \Symforce\UserBundle\Form\Constraints\IdCard(array(
-                             'message'  => $tr->trans('app_user.form.id_card.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.id_card.error', array(), $domain) ,
                          )) ,
                      )
             )) 
@@ -280,31 +280,31 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
             ->add('id_term', 'appcheckbox', array(
                 'label_render' => false ,
                 'translation_domain' => $domain ,
-                'value_text'  => $tr->trans('app_user.form.id_term.text', array(
+                'value_text'  => $tr->trans('sf_user.form.id_term.text', array(
                     '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
                 ), $domain) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank( array(
-                             'message'  => $tr->trans('app_user.form.id_term.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.id_term.error', array(), $domain) ,
                          )) ,
                      )
             )) 
                  
             ->add('captcha', 'appcaptcha', array(
-                'label' => 'app.form.captcha.label' ,
-                'translation_domain' => $app_domain ,
+                'label' => 'sf.form.captcha.label' ,
+                'translation_domain' => $sf_domain ,
             ))
             
             ->add('registration_term', 'appcheckbox', array(
-                'label' => 'app_user.form.registration_term.label' ,
+                'label' => 'sf_user.form.registration_term.label' ,
                 'translation_domain' => $domain ,
-                'value_text'  => $tr->trans('app_user.form.registration_term.text', array(
+                'value_text'  => $tr->trans('sf_user.form.registration_term.text', array(
                     '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
                     '%url%'   => $this->container->get('router')->generate('fos_user_registration_term') ,
                 ), $domain) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank( array(
-                             'message'  => $tr->trans('app_user.form.registration_term.error', array(), $domain) ,
+                             'message'  => $tr->trans('sf_user.form.registration_term.error', array(), $domain) ,
                          )) ,
                      )
             )) 

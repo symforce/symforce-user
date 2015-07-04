@@ -43,6 +43,6 @@ class AppUserExtension extends Extension
     
     public function getAlias()
     {
-        return 'app_user';
+        return 'sf_user';
     }
 }

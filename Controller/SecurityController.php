@@ -22,11 +22,11 @@ class SecurityController extends Controller
      */
     public function loginAction(\Symfony\Component\HttpFoundation\Request $request)
     {
-        $form   = $this->container->get('sf.admin.loader')->getAdminByName('app_user')->getLoginForm( $request ) ;
+        $form   = $this->container->get('sf.admin.loader')->getAdminByName('sf_user')->getLoginForm( $request ) ;
         
         $dispatcher = $this->container->get('event_dispatcher');
         $event = new \Symforce\AdminBundle\Event\FormEvent($form, $request);
-        $dispatcher->dispatch('app.event.form', $event) ;
+        $dispatcher->dispatch('sf.event.form', $event) ;
         if (null !== $event->getResponse()) {
             return $event->getResponse() ;
         } 
