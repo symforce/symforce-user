@@ -98,7 +98,7 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController {
     
     private function createFrom($user, $admin){
          $domain    = $admin->getDomain() ;
-         $sf_domain    = $admin->getAppDomain() ;
+         $sf_domain    = $admin->getSymforceDomain() ;
          $tr     = $this->container->get('translator');
          
          $constraints   = array() ;

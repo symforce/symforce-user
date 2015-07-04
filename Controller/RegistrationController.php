@@ -158,7 +158,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
     
     private function createFrom($user, $admin ){
          $domain    = $admin->getDomain() ;
-         $sf_domain    = $admin->getAppDomain() ;
+         $sf_domain    = $admin->getSymforceDomain() ;
          $tr     = $this->container->get('translator');
          
          $constraints   = array() ;
@@ -171,7 +171,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
         }
          
          $title = $tr->trans('sf_user.registration.title', array(
-                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
+                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getSymforceDomain() ) ,
                 ), $domain) ;
          
          $builder = $this->container->get('form.factory')->createBuilder( 'form', $user , array(
@@ -281,7 +281,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'label_render' => false ,
                 'translation_domain' => $domain ,
                 'value_text'  => $tr->trans('sf_user.form.id_term.text', array(
-                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
+                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getSymforceDomain() ) ,
                 ), $domain) ,
                 'constraints' =>  array (
                          new \Symfony\Component\Validator\Constraints\NotBlank( array(
@@ -299,7 +299,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                 'label' => 'sf_user.form.registration_term.label' ,
                 'translation_domain' => $domain ,
                 'value_text'  => $tr->trans('sf_user.form.registration_term.text', array(
-                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getAppDomain() ) ,
+                    '%brand%' =>   $tr->trans('sf.admin.brand', array(), $admin->getSymforceDomain() ) ,
                     '%url%'   => $this->container->get('router')->generate('fos_user_registration_term') ,
                 ), $domain) ,
                 'constraints' =>  array (
