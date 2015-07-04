@@ -277,7 +277,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
             )) 
                  
                  
-            ->add('id_term', 'appcheckbox', array(
+            ->add('id_term', 'sf_checkbox', array(
                 'label_render' => false ,
                 'translation_domain' => $domain ,
                 'value_text'  => $tr->trans('sf_user.form.id_term.text', array(
@@ -290,12 +290,12 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
                      )
             )) 
                  
-            ->add('captcha', 'appcaptcha', array(
+            ->add('captcha', 'sf_captcha', array(
                 'label' => 'sf.form.captcha.label' ,
                 'translation_domain' => $sf_domain ,
             ))
             
-            ->add('registration_term', 'appcheckbox', array(
+            ->add('registration_term', 'sf_checkbox', array(
                 'label' => 'sf_user.form.registration_term.label' ,
                 'translation_domain' => $domain ,
                 'value_text'  => $tr->trans('sf_user.form.registration_term.text', array(

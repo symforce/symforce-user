@@ -111,12 +111,12 @@ abstract class UserAdmin extends \Symforce\AdminBundle\Compiler\Cache\AdminCache
                         )
                     ) )
                 
-                    ->add('captcha', 'appcaptcha', array(
+                    ->add('captcha', 'sf_captcha', array(
                         'label' => 'sf.form.captcha.label' ,
                         'translation_domain' => $sf_domain ,
                     ))
                 
-                    ->add('remembme', 'appcheckbox', array(
+                    ->add('remembme', 'sf_checkbox', array(
                         'label_render' => false ,
                         'translation_domain' => $sf_domain ,
                         'required'  => false ,
