@@ -34,7 +34,7 @@ class AppUserExtension extends Extension
         if( !$container->hasParameter('mopa_bootstrap.form.templating') ||
                 "MopaBootstrapBundle:Form:fields.html.twig" == $container->getParameter('mopa_bootstrap.form.templating') 
         ) {
-            // $container->setParameter('mopa_bootstrap.form.templating', 'AppAdminBundle:Form:fields.html.twig' ) ;
+            // $container->setParameter('mopa_bootstrap.form.templating', 'SymforceAdminBundle:Form:fields.html.twig' ) ;
         }
         
         $container->setParameter('security.authentication.success_handler.class', 'Symforce\UserBundle\Security\AjaxAuthenticationSuccessHandler' ) ;

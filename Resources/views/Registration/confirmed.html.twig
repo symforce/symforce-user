@@ -4,8 +4,8 @@
 
 {% block fos_user_content %}
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+    {% if sf.versionsession is not empty %}
+        {% set targetUrl = sf.versionsession.get('_security.' ~ sf.versionsecurity.token.providerKey ~ '.target_path') %}
         {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
     {% endif %}
 {% endblock fos_user_content %}
@@ -78,8 +78,8 @@
                     <i class="col-app-4 ico-46 ico-gou "></i>
                     <div class="col-app-19" style=" padding: 10px 0">
                             <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-                            {% if app.session is not empty %}
-                                {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                            {% if sf.versionsession is not empty %}
+                                {% set targetUrl = sf.versionsession.get('_security.' ~ sf.versionsecurity.token.providerKey ~ '.target_path') %}
                                 {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
                             {% endif %}  
                     </div>
@@ -91,8 +91,8 @@
                     <span class="img set-success"></span>
 
                     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-                    {% if app.session is not empty %}
-                        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                    {% if sf.versionsession is not empty %}
+                        {% set targetUrl = sf.versionsession.get('_security.' ~ sf.versionsecurity.token.providerKey ~ '.target_path') %}
                         {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
                     {% endif %}
 
