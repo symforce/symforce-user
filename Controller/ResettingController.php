@@ -52,7 +52,7 @@ class ResettingController extends Controller { // \FOS\UserBundle\Controller\Res
                             'placeholder' => 'sf.login.username.placeholder' ,
                         ),
                         'constraints'   => array(
-                            new \Symfony\Component\Validator\Constraints\Callback(function($username, \Symfony\Component\Validator\ExecutionContext $context ) use($tr){
+                            new \Symfony\Component\Validator\Constraints\Callback(function($username, \Symfony\Component\Validator\Context\ExecutionContext $context ) use($tr){
                                 $user   = $this->container->get('fos_user.user_manager')->findUserByUsernameOrEmail($username) ;
                                 if( !$user ) {
                                     $context->addViolation( $tr->trans('resetting.request.invalid_username', array(
