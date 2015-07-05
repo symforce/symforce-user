@@ -92,7 +92,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
      * @Route("/check-email", name="fos_user_registration_check_email", methods="GET")
      */
     public function checkEmailAction() {
-        $admin = $this->container->get('sf.admin.loader')->getAdminByName( 'sf_user') ;
+        $admin = $this->container->get('sf.admin.loader')->getAdminByName( 'user') ;
         $email = $this->container->get('session')->get('fos_user_send_confirmation_email/email') ;
         if( !$email ) {
             return $this->container->get('templating')->renderResponse('SymforceUserBundle:Registration:checkEmail.html.twig' , array(

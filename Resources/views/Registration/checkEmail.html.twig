@@ -78,7 +78,7 @@
                                 {{user.username}}， 您好，系统已向您的邮箱<span class="red">{{user.email}}</span>
                                 发送了一封包含激活链接的邮件，您想在可以访问该链接以启用你的帐户。
                             {% else %}
-                                {{ 'sf_user.registration.page_expired'|trans({'%email%': user}, admin.domain) }}
+                                {{ 'user.registration.page_expired'|trans({'%email%': user}, admin.domain) }}
                             {% endif %}
                             </p>
                         </center>
@@ -91,7 +91,7 @@
                     {% if user %}
                         {{ 'registration.check_email'| trans({'%email%': user.email}) }}
                     {% else %}
-                        {{ 'sf_user.registration.page_expired'|trans({'%email%': user}, admin.domain) }}
+                        {{ 'user.registration.page_expired'|trans({'%email%': user}, admin.domain) }}
                     {% endif %}
                     </p>
                 </center>#}
