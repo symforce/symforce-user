@@ -22,4 +22,5 @@ class SymforceUserBundle extends Bundle
     {
         return 'FOSUserBundle';
     }
+
 }

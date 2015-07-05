@@ -43,6 +43,6 @@ class SymforceUserExtension extends Extension
     
     public function getAlias()
     {
-        return 'sf_user';
+        return 'symforce_user' ;
     }
 }

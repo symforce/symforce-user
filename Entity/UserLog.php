@@ -14,7 +14,7 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="sf_fos_user_log")
- * @Admin\Entity("sf_user_log", label="User Logs", string="type", icon="user" )
+ * @Admin\Entity("user_log", label="User Logs", string="type", icon="user" )
  * 
  */
 class UserLog

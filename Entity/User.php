@@ -14,7 +14,7 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="sf_fos_user")
- * @Admin\Entity("sf_user", label="User", position=2, string="username", icon="user", dashboard=true )
+ * @Admin\Entity("user", label="User", position=2, string="username", icon="user", dashboard=true )
  * 
  * @Admin\Table("id", order=true)
  * 
